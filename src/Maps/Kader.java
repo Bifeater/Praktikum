@@ -1,6 +1,5 @@
 package Maps;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -19,6 +18,9 @@ public class Kader{
         printMap(keys, values);
 
         ArrayList<Integer> duplikate = printDuplicate(values);
+
+        // TODO: 17.10.2016 eintrag ändern 
+
 
 
 
