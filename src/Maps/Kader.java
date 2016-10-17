@@ -18,7 +18,9 @@ public class Kader{
 
         printMap(keys, values);
 
-        printDuplicate(values);
+        ArrayList<Integer> duplikate = printDuplicate(values);
+
+
 
     }
 
@@ -53,22 +55,22 @@ public class Kader{
         kader.put("Bäda Hans", 5);
     }
 
-    private static void printDuplicate(Collection<Integer> entries){
+    private static ArrayList<Integer> printDuplicate(Collection<Integer> entries){
 
         //Array on 0 bis höchste Spielernummer
         //an index i steht wie oft die nummer im kader or kommt
-        int[] numberArray = new int[Collections.max(entries)+1];
+        int highestNumber = Collections.max(entries);
+        int[] numberArray = new int[highestNumber+1];
         for(Integer number: entries){
             numberArray[number]++;
         }
 
 
-        // TODO: 15.10.2016 glaub hier is der wurm drin 
+
         //füg duplikate zu Liste hinzu
         ArrayList<Integer> duplikate = new ArrayList<>();
-        for(int i: numberArray){
+        for(int i = 0; i < numberArray.length; i++){
             if(numberArray[i] > 1){
-                System.out.println("treffer bei" + i);
                 duplikate.add(i);
             }
         }
@@ -83,9 +85,10 @@ public class Kader{
                 doppelte += ", ";
             }
             doppelte = doppelte.substring(0, doppelte.length()-2);
-            System.out.println("Folgende Nummern sind doppelt ergeben:");
-            System.out.println(doppelte);
+            System.out.println("Folgende Nummern sind doppelt ergeben: " + doppelte);
         }
+
+        return duplikate;
 
 
     }
