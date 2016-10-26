@@ -12,20 +12,115 @@ public class Kader{
     public static void main(String[] args){
         initializeMap();
 
-        Set<String> keys = kader.keySet();
-        Collection<Integer> values = kader.values();
+        //erster versuch:
+        //Set<String> keys = kader.keySet();
+        //Collection<Integer> values = kader.values();
+        //printMap(keys, values);
 
-        printMap(keys, values);
+        //ab hier alles über keyset
+        Set<Map.Entry<String, Integer>> spieler = kader.entrySet();
+        printByEntry(spieler);
 
-        ArrayList<Integer> duplikate = printDuplicate(values);
+        List<Integer> duplikate = findDuplicate(kader);
+        kader.put("Bauer Hans", 16);
 
-        // TODO: 17.10.2016 eintrag ändern 
+        printKeeper(spieler);
+
+        deleteByNumber(3, spieler);
+        printByEntry(spieler);
+
+        kader.remove("Sabe");
+        printByEntry(spieler);
+
+
+
+
+
+
 
 
 
 
     }
 
+    private static void initializeMap(){
+        kader.put("Bambal Mane", 1);
+        kader.put("Sabe", 20);
+        kader.put("Ascher Lugge", 3);
+        kader.put("Bauer Hans", 4);
+        kader.put("Raiffeisen Wast", 4);
+        kader.put("Bäda Hans", 5);
+    }
+
+    private static void printByEntry(Set<Map.Entry<String, Integer>> entries) {
+        System.out.println("Spieler:");
+        String namen = "";
+        for(Map.Entry<String, Integer> entry: entries){
+            namen += entry.getKey();
+            namen += ", ";
+        }
+        System.out.println(namen.substring(0, namen.length()-2));
+
+        System.out.println("Nummern:");
+        String nummern = "";
+        for(Map.Entry<String, Integer> entry: entries){
+            nummern += entry.getValue();
+            nummern += ", ";
+        }
+        System.out.println(   nummern.substring(0, nummern.length()-2)     );
+
+    }
+
+    private static List findDuplicate( Map<String, Integer> kader){
+
+        List<Integer> duplikate = new ArrayList<>();
+
+        Collection<Integer> values = kader.values();
+        int highestNumber = Collections.max(values);
+        int[] numberArray = new int[highestNumber+1];
+
+        //zähle an stelle der nummer eins hoch
+        for(Integer number: values){
+            numberArray[number]++;
+        }
+
+        //finde indizes wo mehr als 1 spieler sind und füg zur liste hinzu
+        for(int i = 0; i < numberArray.length; i++){
+            if(numberArray[i] > 1){
+                duplikate.add(i);
+            }
+        }
+
+          return duplikate;
+    }
+
+    private static void printKeeper(Set<Map.Entry<String, Integer>> spieler){
+
+        for (Map.Entry<String, Integer> pair: spieler){
+            if(pair.getValue() == 1){
+                System.out.println("Keeper: " + pair.getKey());
+            }
+        }
+
+    }
+
+    private static void deleteByNumber(int toDelete, Set<Map.Entry<String, Integer>> spieler){
+
+
+
+
+    }
+
+
+
+
+
+    /**
+     * nur gebraucht für variante 1
+     * schlecht :/
+     * @param keys
+     * @param values
+     */
     private static void printMap(Set<String> keys, Collection<Integer> values){
         String players = "";
         for(String name: keys){
@@ -48,15 +143,12 @@ public class Kader{
         System.out.println(numbers);
     }
 
-    private static void initializeMap(){
-        kader.put("Bambal Mane", 1);
-        kader.put("Sabe", 20);
-        kader.put("Ascher Lugge", 3);
-        kader.put("Bauer Hans", 4);
-        kader.put("Raiffeisen Wast", 4);
-        kader.put("Bäda Hans", 5);
-    }
 
+    /**
+     * auch nur in variante 1 gebraucht
+     * @param entries
+     * @return
+     */
     private static ArrayList<Integer> printDuplicate(Collection<Integer> entries){
 
         //Array on 0 bis höchste Spielernummer
