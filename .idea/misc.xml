@@ -3,6 +3,20 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="PDMPlugin">
+    <option name="customRuleSets">
+      <list>
+        <option value="C:\Users\Philipp\IdeaProjects\pmd.xml" />
+      </list>
+    </option>
+    <option name="options">
+      <map>
+        <entry key="Encoding" value="" />
+        <entry key="Target JDK" value="1.4" />
+      </map>
+    </option>
+    <option name="skipTestSources" value="false" />
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />

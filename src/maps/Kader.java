@@ -1,4 +1,4 @@
-package Maps;
+package maps;
 
 import java.util.*;
 
@@ -115,39 +115,11 @@ public class Kader{
 
 
 
-    /**
-     * nur gebraucht für variante 1
-     * schlecht :/
-     * @param keys
-     * @param values
-     */
-    private static void printMap(Set<String> keys, Collection<Integer> values){
-        String players = "";
-        for(String name: keys){
-            players += name;
-            players += ", ";
-        }
-        players = players.substring(0, players.length()-2);
-
-        System.out.println("Spielernamen:");
-        System.out.println(players);
-
-        String numbers = "";
-        for(Integer number: values){
-            numbers += number;
-            numbers += ", ";
-        }
-        numbers = numbers.substring(0, numbers.length()-2);
-
-        System.out.println("Nummern:");
-        System.out.println(numbers);
-    }
-
 
     /**
      * auch nur in variante 1 gebraucht
-     * @param entries
-     * @return
+     * @param entries Set mit den einzelnen Einträgen der Map
+     * @return ArrayList mit den duplikaten als int
      */
     private static ArrayList<Integer> printDuplicate(Collection<Integer> entries){
 
