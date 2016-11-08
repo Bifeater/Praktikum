@@ -33,7 +33,7 @@ public class LimitedStringToIntMap extends HashMap<String, Integer> implements L
 
     @Override
     public Integer put(String key, Integer value){
-        Integer ka = null;
+
 
         if(controller.contains(key)){
             controller.remove(key);
@@ -52,7 +52,7 @@ public class LimitedStringToIntMap extends HashMap<String, Integer> implements L
             controller.add(key);
         }
 
-        return ka;
+        return value;
     }
 
     @Override
@@ -67,20 +67,20 @@ public class LimitedStringToIntMap extends HashMap<String, Integer> implements L
         controller.remove(key);
 
 
-        return ka;
+        return super.remove(key);
     }
 
     @Override
-    public  Integer get(Object o){
-        Integer object = null;
+    public Integer get(Object o){
+
 
         if(o instanceof String){
             controller.remove(o);
             controller.add( (String)o );
         }
-        object = super.get(o);
 
-        return object;
+        //falls parameter kein string -> exception über super.get()
+        return super.get(o);
     }
 
 
