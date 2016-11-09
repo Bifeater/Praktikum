@@ -10,16 +10,23 @@ import java.util.List;
 
 public class LimitedStringToIntMap extends HashMap<String, Integer> implements LimitedMap {
 
+    //Attribute
     private final int LIMIT;
-
-    //keys SPeichern in reihenfolge wie hinzugefügt
     private List<String> controller = new LinkedList<>();
 
+    //Konstruktor + Getter
     public LimitedStringToIntMap(int limit){
+        if(limit < 1){
+            throw new IllegalArgumentException();
+        }
         this.LIMIT = limit;
+    }
+    public List<String> getController() {
+        return controller;
     }
 
 
+    //Methoden
     @Override
     public int getLimit() {
         return LIMIT;
@@ -57,15 +64,10 @@ public class LimitedStringToIntMap extends HashMap<String, Integer> implements L
 
     @Override
     public Integer remove(Object key){
-        Integer ka = null;
 
-        if(! (key instanceof String) ){
-            return null;
+        if( key instanceof String ){
+            controller.remove(key);
         }
-
-        remove(key);
-        controller.remove(key);
-
 
         return super.remove(key);
     }
@@ -79,8 +81,19 @@ public class LimitedStringToIntMap extends HashMap<String, Integer> implements L
             controller.add( (String)o );
         }
 
-        //falls parameter kein string -> exception über super.get()
         return super.get(o);
+    }
+
+    @Override
+    public boolean containsKey(Object key){
+        boolean isContained = false;
+        if(key instanceof String){
+            isContained = super.containsKey(key);
+            controller.remove(key);
+            controller.add( (String)key );
+        }
+
+        return isContained;
     }
 
 
