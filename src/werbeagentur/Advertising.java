@@ -12,16 +12,18 @@ import java.util.Map;
  */
 public class Advertising {
 
-    // TODO: 26.10.2016 bla
     private Map<String, List<String>> companies;
 
     public static void main(String[] args) {
 
         FileReader fr = null;
         try( BufferedReader br = new BufferedReader(new FileReader("corporations.txt")) ) {
+            //System.out.println("gelesen");
 
-            String line = br.readLine();
-            System.out.println(line);
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
