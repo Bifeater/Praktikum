@@ -15,10 +15,16 @@ public class StringFinder {
         String bla[] = new String[]{"abra" ,"kada", "bra", "", "sim", "sala", "bim"};
         List<String> spells = Arrays.asList(bla);
 
-        String erg = spells.stream().filter( name -> name.equals(gesucht)).toString();
+
+
+        //System.out.println( spells.stream().filter( name -> name.equals(gesucht) ).findAny().orElse(null) );
+        String erg = spells.stream().filter( name -> name.equals(gesucht) ).findAny().orElse(null);
+
+
+
+
         System.out.println(erg);
 
-        System.out.println( spells.stream().filter( name -> name.equals(gesucht) ).findAny().orElse(null) );
 
 
     }
